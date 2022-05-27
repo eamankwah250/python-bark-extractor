@@ -53,6 +53,9 @@ container = browser.find_element(By.XPATH, '//div[@class="items"]')
 leads = container.find_elements(
     By.XPATH, '//*[@id="dashboard-projects"]/div[6]/div')
 
+# Client class list
+Clients = []
+
 # Iterate all client
 for lead in leads:
     lead.click()
@@ -80,3 +83,4 @@ time.sleep(6)
 #     db = Database(db="Team2DB", user="Team2", password="Team2",
 #                   port="5432", host="138.26.48.83")
 #     db.connect()
+#     db.close()
