@@ -1,5 +1,9 @@
 # BARK-Extractor
 
+- `bark_extractor.py`: main app
+- `Client.py`: Client class to store client info
+- `Database.py`: Database class to interact database
+
 ## Dependencies
 
 - Chrome browser
