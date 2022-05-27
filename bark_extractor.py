@@ -4,6 +4,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.options import Options
 import time
+from Database import Database
+from Client import Client
+from PSTtime import pst_date
 
 
 # wait 30 seconds for the element with xpath to be found
@@ -71,3 +74,9 @@ loadMoreBtn = browser.find_element(
     By.XPATH, '//button[text() = "Load more"]').click()
 time.sleep(6)
 
+
+# Database connection
+# if __name__ == '__main__':
+#     db = Database(db="Team2DB", user="Team2", password="Team2",
+#                   port="5432", host="138.26.48.83")
+#     db.connect()
