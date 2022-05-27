@@ -1,11 +1,12 @@
 # bark Client class
 class Client:
-    def __init__(self, firstname, data_received, zip, datails, state):
+    def __init__(self, firstname, data_received, job_type, state, zip, datails):
         self.firstname = firstname
         self.data_received = data_received
+        self.job_type = job_type
+        self.state = state
         self.zip = zip
         self.details = datails
-        self.state = state
         self.map = ""
         self.email = ""
         self.details = ""
@@ -13,7 +14,6 @@ class Client:
         self.area_code = 0
         self.phone = ""
         self.responded_professional_number = 0
-        self.lastname = ""
         self.attachments = []
         self.online = False
 
