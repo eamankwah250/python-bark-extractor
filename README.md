@@ -1,7 +1,6 @@
 # BARK-Extractor
 
 - `bark_extractor.py`: main app
-- `Client.py`: Client class to store client info
 - `Database.py`: Database class to interact actual database
 - `PSTtime.py`: Convert data received time to PST time
 
