@@ -4,10 +4,11 @@ import pytz
 
 
 # return data received time in Pacific Time (PST)
-def pst_date(hours, minutes):
+def pst_date(days, hours, minutes, seconds):
     date_format = '%m/%d/%Y %H:%M:%S %Z'
     # current time - posted ago time
-    date = datetime.now(tz=pytz.utc) - timedelta(hours=hours, minutes=minutes)
+    date = datetime.now(tz=pytz.utc) - timedelta(days=days,
+                                                 hours=hours, minutes=minutes, seconds=seconds)
     # print('Current date & time is:', date.strftime(date_format))
     date = date.astimezone(timezone('US/Pacific'))
     pst_date = date.strftime(date_format)
