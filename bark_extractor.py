@@ -64,30 +64,12 @@ for lead in leads:
         By.XPATH, '//div[@class="project-top"]').text.splitlines()
     first_name = topData[0]
     data_received = topData[1]
-    ago = re.findall(r'(\d+)(\w)', data_received)
-    if ago[0][1] == 'm':
-        date = pst_date(0, 0, ago[0][0])
-    elif ago[0][1] == 'h':
-        date = pst_date(0, ago[0][0], 0)
-    else:
-        date = pst_date(ago[0][0], 0, 0)
-    job_type = topData[2]
-    state = topData[3]
-    online = browser.find_element(
-        By.XPATH, '//span[@class="location-notes"]').text
-    if online == '':
-        online = False
-    else:
-        online = True
-
-    Details = browser.find_element(
-        By.XPATH, '//*[@id="dashboard-project-details"]/div[3]/div[2]').text.splitlines()
+    ago = re.findall(r'\d+)\w', data_received)
+    # job_type = data[2]
+    print(topData)
     mapImage = browser.find_element(
-        By.XPATH, '//img[@class="img-fluid rounded"]').get_attribute('src')
-    print('firstname: {}'.format(first_name))
-    print('data_received: {}'.format(date))
-    print('job_type: {}'.format(job_type))
-    print('state: {}'.format(state))
+        By.XPATH, '//img[@class="img-fluid rounded"]')
+    mapImage.get_attribute('src')
     print('-' * 100)
     time.sleep(1)
 
