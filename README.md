@@ -30,7 +30,7 @@ To see the Epibark_Database_Schema:
 
      or
 
-   - `$ pip install selenium`
+   - `$ pip install selenium pytz`
 
 4. Download **Chrome browser** on your local computer
 5. Check your Chrome browser Version
