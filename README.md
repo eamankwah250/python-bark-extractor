@@ -25,8 +25,11 @@ To see the Epibark_Database_Schema:
 2. Download latest **Python** programming language
    - [Python Download Link](https://www.python.org/downloads/)
 3. Install dependencies for project
+
+   - `$ pip install -r requirements.txt`
+     or
    - `$ pip install selenium`
-   - `$ pip install selenium==4.0.0`
+
 4. Download **Chrome browser** on your local computer
 5. Check your Chrome browser Version
    - Settings -> About Chrome
