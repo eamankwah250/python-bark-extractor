@@ -9,6 +9,7 @@
 - Chrome browser
 - `python --version`: Python 3.8.5
 - `pip show selenium`: Version: 3.141.0
+- `pip show pytz`: Version: 2021.3
 
 ## Database_Schema
 
@@ -37,9 +38,9 @@ To see the Epibark_Database_Schema:
    - Settings -> About Chrome
 6. Google **chrome driver** and download the correct chrome driver that matches your current chrome version.
    - [ChromeDriver Download Link](https://chromedriver.chromium.org/downloads)
-7. Replace `./chromedriver.exe` to your downloaded `./chromedriver.exe`.
+7. Replace current `./chromedriver.exe` to your downloaded `./chromedriver.exe`.
 
 ## Usage
 
-Excute Program = `$ python bark_extractor.py`
-Terminate Program = `Ctrl + C`
+- Excute Program = `$ python bark_extractor.py`
+- Terminate Program = `Ctrl + C`

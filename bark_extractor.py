@@ -2,8 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.action_chains import ActionChains
 import re
 import time
 from Database import Database
@@ -29,20 +29,18 @@ def check_urgency(browser, xpath):
 
 def check_attachments(browser, xpath):
     try:
-        browser.find_elements(By.XPATH, xpath)
+        attachments = browser.find_elements(By.XPATH, xpath)
+        list = []
+        for attachment in attachments:
+            list.append(attachment.get_attribute('href'))
     except NoSuchElementException:
         return "No Attachment"
-    return "Not Urgent"
+    return list
 
-
-# headless chrome
-# comment it out to see the actual flow.
-options = Options()
-# options.headless = True
-# options.add_argument('window-size=1920x1080')
 
 # ****change chrome driver to your current chrome version**********
-browser = webdriver.Chrome('./chromedriver.exe', options=options)
+browser = webdriver.Chrome('./chromedriver.exe')
+browser.maximize_window()
 url = 'https://www.bark.com/en/us/login/'
 browser.get(url)
 
@@ -52,7 +50,6 @@ email = browser.find_element(
     By.ID, "email").send_keys('barkleads@epibuild.com')
 password = browser.find_element(By.ID, "password").send_keys('Thanku2Rob')
 login = browser.find_element(By.XPATH, '//button[text() = "Log in"]').click()
-
 # Click Leads
 wait_until('//a[text() = "Leads"]')
 leadsButton = browser.find_element(By.XPATH, '//a[text() = "Leads"]').click()
@@ -67,14 +64,27 @@ except:
     print('error occurs')
 
 container = browser.find_element(By.XPATH, '//div[@class="items"]')
-leads = container.find_elements(
+
+# Load more Button
+# One click = 15 more leads
+# change numOfclickBtn var to control the number of reads to retrieve.
+numOfclickBtn = 5
+for i in range(numOfclickBtn):
+    loadMoreBtn = browser.find_element(
+        By.XPATH, '//button[text() = "Load more"]').click()
+    time.sleep(1)
+    wait_until('//button[text() = "Load more"]')
+
+leads = browser.find_elements(
     By.XPATH, '//*[@id="dashboard-projects"]/div[6]/div')
 
-print(len(leads))
-
+numOfLeads = len(leads)
+print(numOfLeads)  # number of leads
 # Iterate all client
-for i in range(len(leads)):
-    leads[i].click()
+for i in range(numOfLeads):
+    element = leads[i]
+    ActionChains(browser).move_to_element(
+        element).click(element).perform()
     print(i)
     topData = browser.find_element(
         By.XPATH, '//div[@class="project-top"]').text.splitlines()
@@ -95,7 +105,7 @@ for i in range(len(leads)):
         By.XPATH, '//span[@class="location-notes"]').text
     online = online if online != '' else 'Local Work Only'
     phone = browser.find_element(
-        By.XPATH, '//span[@class="buyer-telephone-display"]').text
+        By.XPATH, '//span[@class="buyer-telephone-display d-flex"]').text
     isVerified = browser.find_element(
         By.XPATH, '//div[@class="verified-phone-container ml-3"]').text
     if isVerified != '':
@@ -125,14 +135,10 @@ for i in range(len(leads)):
     print('urgent: {}'.format(urgent))
     print('credits: {}'.format(credits))
     print('details: {}'.format(details))
+    print('attachment: {}'.format(attachment))
     print('mapImage: {}'.format(mapImage))
     print('-' * 60)
     time.sleep(1)
-
-# Load more
-loadMoreBtn = browser.find_element(
-    By.XPATH, '//button[text() = "Load more"]').click()
-time.sleep(6)
 
 
 # Database connection
