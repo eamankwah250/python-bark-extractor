@@ -71,7 +71,9 @@ container = browser.find_element(By.XPATH, '//div[@class="items"]')
 numOfclickBtn = 5
 for i in range(numOfclickBtn):
     loadMoreBtn = browser.find_element(
-        By.XPATH, '//button[text() = "Load more"]').click()
+        By.XPATH, '//button[text() = "Load more"]')
+    ActionChains(browser).move_to_element(
+        loadMoreBtn).click(loadMoreBtn).perform()
     time.sleep(1)
     wait_until('//button[text() = "Load more"]')
 
@@ -123,7 +125,7 @@ for i in range(numOfLeads):
     attachment = check_attachments(
         browser, '//a[@title="Click to see this image in a new window"]')
     mapImage = browser.find_element(
-        By.XPATH, '//img[@class="img-fluid rounded"]').get_attribute('src')
+        By.XPATH, '//*[@id="dashboard-project-details"]/div[3]/div[2]/div[2]/div[2]/img').get_attribute('src')
 
     print('firstname: {}'.format(first_name))
     print('data_received: {}'.format(date))
