@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.options import Options
+from selenium.common.exceptions import NoSuchElementException
 import re
 import time
 from Database import Database
@@ -16,6 +17,22 @@ def wait_until(xpath):
             EC.presence_of_all_elements_located((By.XPATH, xpath)))
     except:
         print('error occurs')
+
+
+def check_urgency(browser, xpath):
+    try:
+        browser.find_element(By.XPATH, xpath)
+    except NoSuchElementException:
+        return "Urgent - wants to be contacted ASAP"
+    return "Not Urgent"
+
+
+def check_attachments(browser, xpath):
+    try:
+        browser.find_elements(By.XPATH, xpath)
+    except NoSuchElementException:
+        return "No Attachment"
+    return "Not Urgent"
 
 
 # headless chrome
@@ -53,12 +70,12 @@ container = browser.find_element(By.XPATH, '//div[@class="items"]')
 leads = container.find_elements(
     By.XPATH, '//*[@id="dashboard-projects"]/div[6]/div')
 
-# Client class list
-Clients = []
+print(len(leads))
 
 # Iterate all client
-for lead in leads:
-    lead.click()
+for i in range(len(leads)):
+    leads[i].click()
+    print(i)
     topData = browser.find_element(
         By.XPATH, '//div[@class="project-top"]').text.splitlines()
     first_name = topData[0]
@@ -76,24 +93,40 @@ for lead in leads:
     state = topData[3]
     online = browser.find_element(
         By.XPATH, '//span[@class="location-notes"]').text
-    if online == '':
-        online = False
-    else:
-        online = True
+    online = online if online != '' else 'Local Work Only'
     phone = browser.find_element(
         By.XPATH, '//span[@class="buyer-telephone-display"]').text
-
-    Details = browser.find_element(
-        By.XPATH, '//*[@id="dashboard-project-details"]/div[3]/div[2]').text.splitlines()
+    isVerified = browser.find_element(
+        By.XPATH, '//div[@class="verified-phone-container ml-3"]').text
+    if isVerified != '':
+        phone += " Verified"
+    email = browser.find_element(
+        By.XPATH, '//span[@class="buyer-email-display text-break"]').text
+    responses = browser.find_element(
+        By.XPATH, '//span[@class="response-cap-and-count-text"]').text
+    urgent = check_urgency(
+        browser, '//div[@class="project-details-urgent d-none"]')
+    credits = browser.find_element(
+        By.XPATH, '//span[@class="num-credits-resp pl-2 text-grey-400"]').text
+    details = browser.find_element(
+        By.XPATH, '//*[@id="dashboard-project-details"]/div[3]/div[2]').text  # .splitlines()
+    attachment = check_attachments(
+        browser, '//a[@title="Click to see this image in a new window"]')
     mapImage = browser.find_element(
         By.XPATH, '//img[@class="img-fluid rounded"]').get_attribute('src')
+
     print('firstname: {}'.format(first_name))
     print('data_received: {}'.format(date))
     print('job_type: {}'.format(job_type))
     print('state: {}'.format(state))
     print('phone: {}'.format(phone))
+    print('email: {}'.format(email))
+    print('responses: {}'.format(responses))
+    print('urgent: {}'.format(urgent))
+    print('credits: {}'.format(credits))
+    print('details: {}'.format(details))
     print('mapImage: {}'.format(mapImage))
-    print('-' * 100)
+    print('-' * 60)
     time.sleep(1)
 
 # Load more

@@ -25,8 +25,13 @@ To see the Epibark_Database_Schema:
 2. Download latest **Python** programming language
    - [Python Download Link](https://www.python.org/downloads/)
 3. Install dependencies for project
-   - `$ pip install selenium`
-   - `$ pip install selenium==4.0.0`
+
+   - `$ pip install -r requirements.txt`
+
+     or
+
+   - `$ pip install selenium pytz`
+
 4. Download **Chrome browser** on your local computer
 5. Check your Chrome browser Version
    - Settings -> About Chrome
@@ -36,5 +41,5 @@ To see the Epibark_Database_Schema:
 
 ## Usage
 
-Excute Program = `python bark_extractor.py`
+Excute Program = `$ python bark_extractor.py`
 Terminate Program = `Ctrl + C`
