@@ -41,5 +41,5 @@ To see the Epibark_Database_Schema:
 
 ## Usage
 
-Excute Program = `python bark_extractor.py`
+Excute Program = `$ python bark_extractor.py`
 Terminate Program = `Ctrl + C`
