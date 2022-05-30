@@ -70,12 +70,12 @@ container = browser.find_element(By.XPATH, '//div[@class="items"]')
 # change numOfclickBtn var to control the number of reads to retrieve.
 numOfclickBtn = 5
 for i in range(numOfclickBtn):
+    wait_until('//button[text() = "Load more"]')
     loadMoreBtn = browser.find_element(
         By.XPATH, '//button[text() = "Load more"]')
     ActionChains(browser).move_to_element(
         loadMoreBtn).click(loadMoreBtn).perform()
-    time.sleep(1)
-    wait_until('//button[text() = "Load more"]')
+    time.sleep(2)
 
 leads = browser.find_elements(
     By.XPATH, '//*[@id="dashboard-projects"]/div[6]/div')
@@ -87,6 +87,7 @@ for i in range(numOfLeads):
     element = leads[i]
     ActionChains(browser).move_to_element(
         element).click(element).perform()
+    time.sleep(1)
     print(i)
     topData = browser.find_element(
         By.XPATH, '//div[@class="project-top"]').text.splitlines()
@@ -140,7 +141,6 @@ for i in range(numOfLeads):
     print('attachment: {}'.format(attachment))
     print('mapImage: {}'.format(mapImage))
     print('-' * 60)
-    time.sleep(1)
 
 
 # Database connection
