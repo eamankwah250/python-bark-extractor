@@ -1,5 +1,4 @@
-# postgreSQL
-# import psycopg2
+import psycopg2
 
 
 # Database class
@@ -11,14 +10,14 @@ class Database:
         self.port = port
         self.host = host
 
-#     def connect(self):
-#         self.connection = psycopg2.connect(
-#             database=self.db,
-#             user=self.user,
-#             password=self.password,
-#             port=self.port,
-#             host=self.host
-#         )
+    def connect(self):
+        self.connection = psycopg2.connect(
+            database=self.db,
+            user=self.user,
+            password=self.password,
+            port=self.port,
+            host=self.host
+        )
 
 #     def executeQuery(self, query, values=None):
 #         print('query:', query)
