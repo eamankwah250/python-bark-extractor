@@ -24,9 +24,10 @@ To see the Epibark_Database_Schema:
 1. Download source code by:
    - `$ git clone https://github.com/heeshin174/bark-extractor`
    - Download Zip file
-2. Download latest **Python** programming language
+2. Download Chrome browser
+3. Download latest **Python** programming language
    - [Python Download Link](https://www.python.org/downloads/)
-3. Install dependencies for project
+4. Install dependencies for project
 
    - `$ pip install -r requirements.txt`
 
@@ -34,14 +35,19 @@ To see the Epibark_Database_Schema:
 
    - `$ pip install selenium pytz psycopg2`
 
-4. Download **Chrome browser** on your local computer
-5. Check your Chrome browser Version
+5. Download **Chrome browser** on your local computer
+6. Check your Chrome browser Version
    - Settings -> About Chrome
-6. Google **chrome driver** and download the correct chrome driver that matches your current chrome version.
+
+![chromeVewrsion](./img/chromeVersion.png)
+
+7. Google **chrome driver** and download the correct chrome driver that matches your current chrome version.
    - [ChromeDriver Download Link](https://chromedriver.chromium.org/downloads)
-7. Replace current `./chromedriver.exe` to your downloaded `./chromedriver.exe`.
+8. Replace current `./chromedriver.exe` to your downloaded `./chromedriver.exe`.
+9. Run the program by typing `$ python bark_extractor.py`
 
 ## Usage
 
-- Excute Program = `$ python bark_extractor.py`
-- Terminate Program = `Ctrl + C`
+- Excute Program: `$ python bark_extractor.py`
+  - MacOS: `$ python3 bark_extractor.py`
+- Terminate Program: `Ctrl + C`
