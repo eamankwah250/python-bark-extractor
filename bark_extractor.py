@@ -145,7 +145,9 @@ for i in range(numOfLeads):
 
 # Database connection
 if __name__ == '__main__':
-    db = Database(db="Epibark", user="Postgres", password="Thanku2Rob",
-                  port="5432", host="138.26.48.83")
+    db = Database(db="epifinde_EpiBark", user="epifinde_epibark", password="Thanku2Rob",
+                  port="5432", host="50.87.21.232")
+    # db = Database(db="epifinde_EpiBark", user="epifinde_epibark", password="Thanku2Rob",
+    #               port="5432", host="162.159.24.80")
     db.connect()
     db.close()
