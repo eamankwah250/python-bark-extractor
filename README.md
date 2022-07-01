@@ -12,9 +12,9 @@ Extract leads from the www.bark.com website and store its data in the postgresql
 
 - Chrome browser
 - `$ python --version`: Python 3.8.5
-- `$ pip show selenium`: Version: 3.141.0
-- `$ pip show pytz`: Version: 2021.3
-- `$ pip show psycopg2`: Version: 2.9.1
+- `$ pip show selenium`: Version: 4.3.0
+- `$ pip show pytz`: Version: 2022.1
+- `$ pip show psycopg2`: Version: 2.9.3
 
 ## Database_Schema
 
@@ -69,6 +69,6 @@ To see the Epibark_Database_Schema:
 
    - Follow the installation instructions to have the correct Python dependencies.
    - `$ python --version`: Python 3.8.5
-   - `$ pip show selenium`: Version: 3.141.0
-   - `$ pip show pytz`: Version: 2021.3
-   - `$ pip show psycopg2`: Version: 2.9.1
+   - `$ pip show selenium`: Version: 4.3.0
+   - `$ pip show pytz`: Version: 2022.1
+   - `$ pip show psycopg2`: Version: 2.9.3

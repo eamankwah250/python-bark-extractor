@@ -78,7 +78,7 @@ def main():
         wait_until(browser, '//button[text() = "Load more"]')
         loadMoreBtn = browser.find_element(
             By.XPATH, '//button[text() = "Load more"]')
-        ActionChains(browser).move_to_element(
+        ActionChains(browser).scroll_to_element(
             loadMoreBtn).click(loadMoreBtn).perform()
         time.sleep(2)
 
@@ -90,7 +90,7 @@ def main():
     # Iterate all client
     for i in range(numOfLeads):
         element = leads[i]
-        ActionChains(browser).move_to_element(
+        ActionChains(browser).scroll_to_element(
             element).click(element).perform()
         time.sleep(1)
         print(i)
@@ -151,7 +151,9 @@ def main():
 # Database connection
 if __name__ == '__main__':
     db = Database(db="epifinde_EpiBark", user="epifinde_epibark", password="Thanku2Rob",
-                  port="5432", host="162.159.24.80")
+                  port="5432", host="01.01.24.80")
+    # db = Database(db="epifinde_EpiBark", user="epifinde_epibark", password="Thanku2Rob",
+    #               port="5432", host="162.159.24.80")
     db.connect()
     main()
     db.close()
