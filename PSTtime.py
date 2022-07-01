@@ -5,7 +5,7 @@ import pytz
 
 # return data received time in Pacific Time (PST)
 def pst_date(days, hours, minutes, seconds):
-    date_format = '%m/%d/%Y %H:%M:%S %Z'
+    date_format = '%A %m/%d/%Y %I:%M%p %Z'
     # current time - posted ago time
     date = datetime.now(tz=pytz.utc) - timedelta(days=days,
                                                  hours=hours, minutes=minutes, seconds=seconds)
