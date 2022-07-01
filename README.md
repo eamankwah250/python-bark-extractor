@@ -63,6 +63,7 @@ To see the Epibark_Database_Schema:
    - Check your operating system and download the corresponding chromedriver
    - check your chrome browser and download the corresponding chromedriver
    - Try other `chromedriver.exe` if something breaks during the execution.
+   - `ActionChains` may not work in the wrong chromedriver.
 
 2. Install the wrong version of Python dependencies
 
