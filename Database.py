@@ -20,7 +20,7 @@ class Database:
                 host=self.host
             )
         except:
-            print("I am unable to connect to the database.")
+            print("unable to connect to the database.")
 
     def executeQuery(self, query, values=None):
         print('query:', query)

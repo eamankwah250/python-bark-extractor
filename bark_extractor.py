@@ -78,17 +78,15 @@ def main():
         wait_until(browser, '//button[text() = "Load more"]')
         loadMoreBtn = browser.find_element(
             By.XPATH, '//button[text() = "Load more"]')
+        time.sleep(1)
         ActionChains(browser).scroll_to_element(
             loadMoreBtn).click(loadMoreBtn).perform()
         time.sleep(2)
 
+    # Iterate all lead
     leads = browser.find_elements(
         By.XPATH, '//*[@id="dashboard-projects"]/div[6]/div')
-
-    numOfLeads = len(leads)
-    print(numOfLeads)  # number of leads
-    # Iterate all client
-    for i in range(numOfLeads):
+    for i in range(len(leads)):
         element = leads[i]
         ActionChains(browser).scroll_to_element(
             element).click(element).perform()
@@ -127,7 +125,12 @@ def main():
         credits = browser.find_element(
             By.XPATH, '//span[@class="num-credits-resp pl-2 text-grey-400"]').text
         details = browser.find_element(
-            By.XPATH, '//*[@id="dashboard-project-details"]/div[3]/div[2]').text  # .splitlines()
+            By.XPATH, '//*[@id="dashboard-project-details"]/div[3]/div[2]').text
+        detail = details.splitlines()
+        budget = "I'm not sure"
+        for index in range(len(detail)):
+            if "budget" in detail[index]:
+                budget = detail[index + 1]
         attachment = check_attachments(
             browser, '//a[@title="Click to see this image in a new window"]')
         mapImage = browser.find_element(
@@ -143,6 +146,7 @@ def main():
         print('urgent: {}'.format(urgent))
         print('credits: {}'.format(credits))
         print('details: {}'.format(details))
+        print('budget: {}'.format(budget))
         print('attachment: {}'.format(attachment))
         print('mapImage: {}'.format(mapImage))
         print('-' * 60)
@@ -150,10 +154,8 @@ def main():
 
 # Database connection
 if __name__ == '__main__':
-    db = Database(db="epifinde_EpiBark", user="epifinde_epibark", password="Thanku2Rob",
-                  port="5432", host="01.01.24.80")
-    # db = Database(db="epifinde_EpiBark", user="epifinde_epibark", password="Thanku2Rob",
-    #               port="5432", host="162.159.24.80")
+    db = Database(db="epifinde_EpiBark", user="epifinde_epibark", password="Thanku2Rob@bark",
+                  port="5432", host="50.87.21.232")
     db.connect()
     main()
     db.close()
