@@ -43,9 +43,9 @@ class Database:
     def insertQuery(self, name, date, job_type,
                     state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage):
         cursor = self.connection.cursor()
-        query = 'INSERT INTO Bark_Client (Name, Date_Received, Job_Type, State, Phone, Email, Responded_Professional_Number, Urgent, Credits, Details, Budget, Attachments, Map) VALUES ({},{},{},{},{},{},{},{},{},{},{},{},{});'.format(
-            name, date, job_type, state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage)
-        cursor.execute(query)
+        query = 'INSERT INTO "public"."Bark_Client" ("Name", "Date_Received", "Job_Type", "State", "Phone", "Email", "Responded_Professional_Number", "Urgent", "Credits", "Details", "Budget", "Attachments", "Map") VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);'
+        vars = name, date, job_type, state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage
+        cursor.execute(query, vars=vars)
         self.connection.commit()
         cursor.close()
 

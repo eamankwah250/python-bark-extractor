@@ -73,7 +73,7 @@ def mainFn():
     # Load more Button
     # One click = 15 more leads
     # change numOfclickBtn var to control the number of reads to retrieve.
-    numOfclickBtn = 5
+    numOfclickBtn = 10
     for i in range(numOfclickBtn):
         wait_until(browser, '//button[text() = "Load more"]')
         loadMoreBtn = browser.find_element(
@@ -83,6 +83,7 @@ def mainFn():
             loadMoreBtn).click(loadMoreBtn).perform()
         time.sleep(2)
 
+    print(len(leads))
     # Iterate all lead
     leads = browser.find_elements(
         By.XPATH, '//*[@id="dashboard-projects"]/div[6]/div')
@@ -91,7 +92,6 @@ def mainFn():
         ActionChains(browser).scroll_to_element(
             element).click(element).perform()
         time.sleep(1)
-        print(i)
         topData = browser.find_element(
             By.XPATH, '//div[@class="project-top"]').text.splitlines()
         first_name = topData[0]

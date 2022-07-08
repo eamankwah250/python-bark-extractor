@@ -72,3 +72,7 @@ To see the Epibark_Database_Schema:
    - `$ pip show selenium`: Version: 4.3.0
    - `$ pip show pytz`: Version: 2022.1
    - `$ pip show psycopg2`: Version: 2.9.3
+
+3. Computer is too slow to execute the program.
+
+   - Try running the program on another computer that has more resources.
