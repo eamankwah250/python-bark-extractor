@@ -6,7 +6,6 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 import re
 import time
-from Database import Database
 from PSTtime import pst_date
 
 

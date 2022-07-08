@@ -51,7 +51,7 @@ def click_notification(browser):
 
 # ****change chrome driver to your current chrome version**********
 # Main function
-def main():
+def mainFn():
     browser = webdriver.Chrome('./chromedriver.exe')
     browser.maximize_window()
     url = 'https://www.bark.com/en/us/login/'
@@ -135,21 +135,8 @@ def main():
             browser, '//a[@title="Click to see this image in a new window"]')
         mapImage = browser.find_element(
             By.XPATH, '//*[@id="dashboard-project-details"]/div[3]/div[2]/div[2]/div[2]/img').get_attribute('src')
-
-        print('firstname: {}'.format(first_name))
-        print('data_received: {}'.format(date))
-        print('job_type: {}'.format(job_type))
-        print('state: {}'.format(state))
-        print('phone: {}'.format(phone))
-        print('email: {}'.format(email))
-        print('responses: {}'.format(responses))
-        print('urgent: {}'.format(urgent))
-        print('credits: {}'.format(credits))
-        print('details: {}'.format(details))
-        print('budget: {}'.format(budget))
-        print('attachment: {}'.format(attachment))
-        print('mapImage: {}'.format(mapImage))
-        print('-' * 60)
+        db.insertQuery(first_name, date, job_type,
+                       state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage)
 
 
 # Database connection
@@ -157,5 +144,5 @@ if __name__ == '__main__':
     db = Database(db="epifinde_EpiBark", user="epifinde_epibark", password="Thanku2Rob@bark",
                   port="5432", host="50.87.21.232")
     db.connect()
-    main()
+    mainFn()
     db.close()
