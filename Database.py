@@ -20,7 +20,9 @@ class Database:
                 host=self.host
             )
         except:
-            print("unable to connect to the database.")
+            print("UNABLE TO CONNECT TO THE DATABASE.")
+            print("MAKE SURE YOUR IP ADDRESS IS WHITELISTED BY BLUEHOST!")
+            quit()
 
     def executeQuery(self, query, values=None):
         print('query:', query)
@@ -32,17 +34,18 @@ class Database:
 
     def selectQuery(self, relation):
         cursor = self.connection.cursor()
-        query = 'SELECT * FROM {} ORDER BY day;'.format(relation)
+        query = 'SELECT * FROM {};'.format(relation)
         cursor.execute(query)
         rows = cursor.fetchall()
         cursor.close()
         return rows
 
-    def insertQuery(self, day, powerusage, electric_cost, waterusage, water_cost, totalcost):
+    def insertQuery(self, name, date, job_type,
+                    state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage):
         cursor = self.connection.cursor()
-        query = 'INSERT INTO daily_summary_2 (day, electric_usage, electric_cost, water_usage, water_cost, total_cost) VALUES ({},{},{},{},{},{});'.format(
-            day, powerusage, electric_cost, waterusage, water_cost, totalcost)
-        cursor.execute(query)
+        query = 'INSERT INTO "public"."Bark_Client" ("Name", "Date_Received", "Job_Type", "State", "Phone", "Email", "Responded_Professional_Number", "Urgent", "Credits", "Details", "Budget", "Attachments", "Map") VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);'
+        vars = name, date, job_type, state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage
+        cursor.execute(query, vars=vars)
         self.connection.commit()
         cursor.close()
 
