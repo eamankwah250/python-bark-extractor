@@ -1,0 +1,18 @@
+SQL query for creating Table:
+
+CREATE TABLE Bark_Client(
+    name varchar(50),
+    email varchar(80),
+    phone varchar(15),
+    state varchar(80),
+    credits  varchar(12),
+    Date_Received varchar(30),
+    job_type varchar(60),
+    urgent varchar(38),
+    Responded_Professional_Number varchar(40),
+    details varchar(1000),
+    budget varchar(30)
+    attachment varchar(200),
+    map varchar(180),
+    PRIMARY KEY (name, state, job_type)
+);

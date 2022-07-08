@@ -8,6 +8,13 @@
 
 Extract leads from the www.bark.com website and store its data in the postgresql database.
 
+- Change line 76 `numOfclickBtn` variable to control the number of reads to retrieve
+  - oneClick = 15 leads
+  - numOfclickBtn = 5
+    - total leads: 15 \* (5 + 1) = 90 leads
+  - numOfclickBtn = 10
+    - total leads: 15 \* (10 + 1) = 165 leads
+
 ## Dependencies
 
 - Chrome browser
@@ -18,7 +25,10 @@ Extract leads from the www.bark.com website and store its data in the postgresql
 
 ## Database_Schema
 
-To see the Epibark_Database_Schema:
+![Schema](./Database_Schema/schema.png)
+![Schema_diagram](./Database_Schema/Schema_diagram.png)
+
+To change the Epibark_Database_Schema diagram:
 
 1. open www.draw.io
 2. Drag and drop `./Database_Schema/Epibark_Database_Schema.drawio` file
