@@ -10,9 +10,9 @@ Extract leads from the www.bark.com website and store its data in the postgresql
 
 - Change line 76 `numOfclickBtn` variable to control the number of reads to retrieve
   - oneClick = 15 leads
-  - numOfclickBtn = 5
+  - `numOfclickBtn = 5`
     - total leads: 15 \* (5 + 1) = 90 leads
-  - numOfclickBtn = 10
+  - `numOfclickBtn = 10`
     - total leads: 15 \* (10 + 1) = 165 leads
 
 ## Dependencies
@@ -86,3 +86,17 @@ To change the Epibark_Database_Schema diagram:
 3. Computer is too slow to execute the program.
 
    - Try running the program on another computer that has more resources.
+
+4. Your IP address is not whitelisted by bluehost
+
+   - **MAKE SURE YOUR IP ADDRESS IS WHITELISTED BY BLUEHOST!**
+
+## Database
+
+To see the actaul data in the database:
+
+1. open www.bluehost.com
+2. login as **epifinder.com** account
+   - ask _Robert Yao_ for permission
+3. click _Advanced_ -> _phpPgAdmin_ -> _epifinde_EpiBark_ -> _public_ -> _Bark_Client_
+4. click _Select_ -> _Select all fields_ -> _Select_
