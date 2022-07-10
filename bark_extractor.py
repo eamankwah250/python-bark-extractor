@@ -83,7 +83,6 @@ def mainFn():
             loadMoreBtn).click(loadMoreBtn).perform()
         time.sleep(2)
 
-    print(len(leads))
     # Iterate all lead
     leads = browser.find_elements(
         By.XPATH, '//*[@id="dashboard-projects"]/div[6]/div')
@@ -92,6 +91,7 @@ def mainFn():
         ActionChains(browser).scroll_to_element(
             element).click(element).perform()
         time.sleep(1)
+        print(i)
         topData = browser.find_element(
             By.XPATH, '//div[@class="project-top"]').text.splitlines()
         first_name = topData[0]

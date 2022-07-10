@@ -42,12 +42,18 @@ class Database:
 
     def insertQuery(self, name, date, job_type,
                     state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage):
-        cursor = self.connection.cursor()
-        query = 'INSERT INTO "public"."Bark_Client" ("Name", "Date_Received", "Job_Type", "State", "Phone", "Email", "Responded_Professional_Number", "Urgent", "Credits", "Details", "Budget", "Attachments", "Map") VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);'
-        vars = name, date, job_type, state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage
-        cursor.execute(query, vars=vars)
-        self.connection.commit()
-        cursor.close()
+        try:
+            cursor = self.connection.cursor()
+            query = 'INSERT INTO "public"."Bark_Client" ("Name", "Date_Received", "Job_Type", "State", "Phone", "Email", "Responded_Professional_Number", "Urgent", "Credits", "Details", "Budget", "Attachments", "Map") VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);'
+            vars = name, date, job_type, state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage
+            cursor.execute(query, vars=vars)
+            self.connection.commit()
+            cursor.close()
+        except:
+            print(
+                "UniqueViolation: duplicate key value violates unique constraint Bark_Client_pkey")
+            print("DETAIL:  Key (Job_Type, Name, State)=({}, {}, {}) already exists.".format(
+                job_type, name, state))
 
     def close(self):
         self.connection.close()

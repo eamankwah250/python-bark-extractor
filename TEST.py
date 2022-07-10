@@ -121,7 +121,9 @@ for i in range(len(leads)):
         By.XPATH, '//span[@class="num-credits-resp pl-2 text-grey-400"]').text
     details = browser.find_element(
         By.XPATH, '//*[@id="dashboard-project-details"]/div[3]/div[2]').text
-    for index in range(len(details.splitlines())):
+    detail = details.splitlines()
+    budget = "I'm not sure"
+    for index in range(len(detail)):
         if "budget" in details[index]:
             budget = details[index + 1]
     attachment = check_attachments(
