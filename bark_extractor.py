@@ -130,7 +130,10 @@ def mainFn():
         budget = "I'm not sure"
         for index in range(len(detail)):
             if "budget" in detail[index]:
-                budget = detail[index + 1]
+                try:
+                    budget = detail[index + 1]
+                except IndexError:
+                    budget = "I'm not sure"
         attachment = check_attachments(
             browser, '//a[@title="Click to see this image in a new window"]')
         mapImage = browser.find_element(
