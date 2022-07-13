@@ -67,7 +67,7 @@ To change the Epibark_Database_Schema diagram:
 
 ## POSSIBLE ERRORS
 
-1. Downlaod the wrong **chromedriver**
+1. Download the wrong **chromedriver**
 
    - **YOU NEED TO UPDATE THE CHROMEDRIVER IF YOUR CHORME IS UPDATED**
    - Check your operating system and download the corresponding chromedriver
@@ -83,13 +83,15 @@ To change the Epibark_Database_Schema diagram:
    - `$ pip show pytz`: Version: 2022.1
    - `$ pip show psycopg2`: Version: 2.9.3
 
-3. Computer is too slow to execute the program.
+3. Computer resources are too small and slow to execute the program.
 
    - Try running the program on another computer that has more resources.
 
 4. Your IP address is not whitelisted by bluehost
 
    - **MAKE SURE YOUR IP ADDRESS IS WHITELISTED BY BLUEHOST!**
+   - **If your IP address is dynamic, you will need to whitelist the changed IP address again.**
+   - If your IP address is static, you don't need to whitelist the IP address again.
 
 ## Database
 
