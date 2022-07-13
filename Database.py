@@ -54,6 +54,7 @@ class Database:
                 "UniqueViolation: duplicate key value violates unique constraint Bark_Client_pkey")
             print("DETAIL:  Key (Job_Type, Name, State)=({}, {}, {}) already exists.".format(
                 job_type, name, state))
+            quit()
 
     def close(self):
         self.connection.close()
