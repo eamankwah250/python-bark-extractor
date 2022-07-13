@@ -93,6 +93,8 @@ To change the Epibark_Database_Schema diagram:
    - **If your IP address is dynamic, you will need to whitelist the changed IP address again.**
    - If your IP address is static, you don't need to whitelist the IP address again.
 
+**PLEASE RESTART THE PROGRAM IF ALL OF THE ABOVE DO NOT APPLY**
+
 ## Database
 
 To see the actaul data in the database:
