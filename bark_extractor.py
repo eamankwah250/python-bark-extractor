@@ -73,7 +73,7 @@ def mainFn():
     # Load more Button
     # One click = 15 more leads
     # change numOfclickBtn var to control the number of reads to retrieve.
-    numOfclickBtn = 1
+    numOfclickBtn = 15
     for i in range(numOfclickBtn):
         wait_until(browser, '//button[text() = "Load more"]')
         loadMoreBtn = browser.find_element(
