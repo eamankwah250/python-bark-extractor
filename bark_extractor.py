@@ -22,9 +22,9 @@ def wait_until(browser, xpath):
 def check_urgency(browser, xpath):
     try:
         browser.find_element(By.XPATH, xpath)
+        return "Not Urgent"
     except NoSuchElementException:
         return "Urgent - wants to be contacted ASAP"
-    return "Not Urgent"
 
 
 def check_attachments(browser, xpath):
@@ -33,9 +33,9 @@ def check_attachments(browser, xpath):
         list = []
         for attachment in attachments:
             list.append(attachment.get_attribute('href'))
+        return list
     except NoSuchElementException:
         return list
-    return list
 
 
 # Click Notification alert
@@ -121,7 +121,7 @@ def mainFn():
         responses = browser.find_element(
             By.XPATH, '//span[@class="response-cap-and-count-text"]').text
         urgent = check_urgency(
-            browser, '//div[@class="project-details-urgent d-none"]')
+            browser, '//div[@class="project-details-urgent font-weight-regular text-grey-600 mb-2 mt-2 d-none"]')
         credits = browser.find_element(
             By.XPATH, '//span[@class="num-credits-resp pl-2 text-grey-400"]').text
         details = browser.find_element(
