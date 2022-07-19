@@ -41,11 +41,11 @@ class Database:
         return rows
 
     def insertQuery(self, name, date, job_type,
-                    state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage):
+                    state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage, remote):
         try:
             cursor = self.connection.cursor()
-            query = 'INSERT INTO "public"."Bark_Client" ("Name", "Date_Received", "Job_Type", "State", "Phone", "Email", "Responded_Professional_Number", "Urgent", "Credits", "Details", "Budget", "Attachments", "Map") VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);'
-            vars = name, date, job_type, state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage
+            query = 'INSERT INTO "public"."Bark_Client" ("Name", "Date_Received", "Job_Type", "State", "Phone", "Email", "Responded_Professional_Number", "Urgent", "Credits", "Details", "Budget", "Attachments", "Map", "Remote") VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);'
+            vars = name, date, job_type, state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage, remote
             cursor.execute(query, vars=vars)
             self.connection.commit()
             cursor.close()

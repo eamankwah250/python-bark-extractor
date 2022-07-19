@@ -27,6 +27,14 @@ def check_urgency(browser, xpath):
         return "Urgent - wants to be contacted ASAP"
 
 
+def check_remote_option(browser, xpath):
+    try:
+        browser.find_element(By.XPATH, xpath)
+        return "Non Remote Lead"
+    except NoSuchElementException:
+        return "Happy to receive service online or remotely"
+
+
 def check_attachments(browser, xpath):
     try:
         attachments = browser.find_elements(By.XPATH, xpath)
@@ -122,6 +130,8 @@ def mainFn():
             By.XPATH, '//span[@class="response-cap-and-count-text"]').text
         urgent = check_urgency(
             browser, '//div[@class="project-details-urgent font-weight-regular text-grey-600 mb-2 mt-2 d-none"]')
+        remote = check_remote_option(
+            browser, '//div[@class="project-name-location project-name-location-notes d-none d-md-block hidden"]')
         credits = browser.find_element(
             By.XPATH, '//span[@class="num-credits-resp pl-2 text-grey-400"]').text
         details = browser.find_element(
@@ -139,7 +149,7 @@ def mainFn():
         mapImage = browser.find_element(
             By.XPATH, '//*[@id="dashboard-project-details"]/div[3]/div[2]/div[2]/div[2]/img').get_attribute('src')
         db.insertQuery(first_name, date, job_type,
-                       state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage)
+                       state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage, remote)
 
 
 # Database connection

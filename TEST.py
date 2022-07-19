@@ -26,6 +26,14 @@ def check_urgency(browser, xpath):
         return "Urgent - wants to be contacted ASAP"
 
 
+def check_remote_option(browser, xpath):
+    try:
+        browser.find_element(By.XPATH, xpath)
+        return "Non Remote Lead"
+    except NoSuchElementException:
+        return "Happy to receive service online or remotely"
+
+
 def check_attachments(browser, xpath):
     try:
         attachments = browser.find_elements(By.XPATH, xpath)
@@ -69,7 +77,7 @@ browser.find_element(By.XPATH, '//a[text() = "Leads"]').click()
 # Load more Button
 # One click = 15 more leads
 # change numOfclickBtn var to control the number of reads to retrieve.
-numOfclickBtn = 5
+numOfclickBtn = 2
 for i in range(numOfclickBtn):
     wait_until(browser, '//button[text() = "Load more"]')
     loadMoreBtn = browser.find_element(
@@ -117,6 +125,8 @@ responses = browser.find_element(
     By.XPATH, '//span[@class="response-cap-and-count-text"]').text
 urgent = check_urgency(
     browser, '//div[@class="project-details-urgent font-weight-regular text-grey-600 mb-2 mt-2 d-none"]')
+remote = check_remote_option(
+    browser, '//div[@class="project-name-location project-name-location-notes d-none d-md-block hidden"]')
 credits = browser.find_element(
     By.XPATH, '//span[@class="num-credits-resp pl-2 text-grey-400"]').text
 details = browser.find_element(
@@ -139,6 +149,7 @@ print('phone: {}'.format(phone))
 print('email: {}'.format(email))
 print('responses: {}'.format(responses))
 print('urgent: {}'.format(urgent))
+print('remote: {}'.format(remote))
 print('credits: {}'.format(credits))
 print('details: {}'.format(details))
 print('budget: {}'.format(budget))
