@@ -1,5 +1,7 @@
 # BARK-Extractor
 
+Current PostgreSQL version: **9.2.24**
+
 - `bark_extractor.py`: main app
 - `Database.py`: Database class to interact actual database
 - `PSTtime.py`: Convert data received time to PST time
@@ -103,4 +105,4 @@ To see the actaul data in the database:
 2. login as **epifinder.com** account
    - ask _Robert Yao_ for permission
 3. click _Advanced_ -> _phpPgAdmin_ -> _epifinde_EpiBark_ -> _public_ -> _Bark_Client_
-4. click _Select_ -> _Select all fields_ -> _Select_
+4. click _Browse_ at the top navigation bar

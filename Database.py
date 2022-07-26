@@ -19,7 +19,8 @@ class Database:
                 port=self.port,
                 host=self.host
             )
-        except:
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
             print("UNABLE TO CONNECT TO THE DATABASE.")
             print("MAKE SURE YOUR IP ADDRESS IS WHITELISTED BY BLUEHOST!")
             quit()
@@ -44,16 +45,14 @@ class Database:
                     state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage, remote):
         try:
             cursor = self.connection.cursor()
-            query = 'INSERT INTO "public"."Bark_Client" ("Name", "Date_Received", "Job_Type", "State", "Phone", "Email", "Responded_Professional_Number", "Urgent", "Credits", "Details", "Budget", "Attachments", "Map", "Remote") VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);'
+            # query = """INSERT INTO "public"."Bark_Client" ("Name", "Date_Received", "Job_Type", "State", "Phone", "Email", "Responded_Professional_Number", "Urgent", "Credits", "Details", "Budget", "Attachments", "Map", "Remote") VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT ("Name","Job_Type","State") DO UPDATE SET "Responded_Professional_Number"=EXCLUDED."Responded_Professional_Number";"""
+            query = """INSERT INTO "public"."Bark_Client" ("Name", "Date_Received", "Job_Type", "State", "Phone", "Email", "Responded_Professional_Number", "Urgent", "Credits", "Details", "Budget", "Attachments", "Map", "Remote") VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"""
             vars = name, date, job_type, state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage, remote
             cursor.execute(query, vars=vars)
             self.connection.commit()
             cursor.close()
-        except:
-            print(
-                "UniqueViolation: duplicate key value violates unique constraint Bark_Client_pkey")
-            print("DETAIL:  Key (Job_Type, Name, State)=({}, {}, {}) already exists.".format(
-                job_type, name, state))
+        except (Exception, psycopg2.Error) as error:
+            print(error)
             quit()
 
     def close(self):
