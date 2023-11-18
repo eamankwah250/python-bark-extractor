@@ -4,6 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.chrome.service import Service
 import re
 import time
 from Database import Database
@@ -60,7 +61,7 @@ def click_notification(browser):
 # ****change chrome driver to your current chrome version**********
 # Main function
 def mainFn():
-    browser = webdriver.Chrome('./chromedriver.exe')
+    browser = webdriver.Chrome(service= Service('./chromedriver.exe'))
     browser.maximize_window()
     url = 'https://www.bark.com/en/us/login/'
     browser.get(url)
@@ -148,8 +149,20 @@ def mainFn():
             browser, '//a[@title="Click to see this image in a new window"]')
         mapImage = browser.find_element(
             By.XPATH, '//*[@id="dashboard-project-details"]/div[3]/div[2]/div[2]/div[2]/img').get_attribute('src')
-        db.insertQuery(first_name, date, job_type,
+        
+        count= db.countQuery(first_name, state, job_type)
+        #print(count)
+
+        if(count < 1):
+            db.insertQuery(first_name, date, job_type,
                        state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage, remote)
+            print (first_name + " inserted")
+        else:
+            db.updateQuery(first_name, date, job_type, state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage, remote)
+            print(first_name + " updated")
+        
+
+
 
 
 # Database connection

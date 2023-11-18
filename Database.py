@@ -41,11 +41,44 @@ class Database:
         cursor.close()
         return rows
 
+    def countQuery(self, name, state, job_type):
+        try:
+            cursor = self.connection.cursor()
+            query= """SELECT COUNT(*) FROM "public"."Bark_Client" WHERE "Name"= %s AND "State"= %s AND "Job_Type"= %s; """
+            values= name, state, job_type
+            cursor.execute(query, vars=values)
+            result= cursor.fetchone()[0]
+
+           # print(cursor.mogrify(query, values))
+            #print(result)
+
+            cursor.close()
+        except(Exception, psycopg2.Error) as error:
+            print(error)
+            quit()
+        return (result)
+
+    def updateQuery(self, name, date, job_type,
+                    state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage, remote):
+        try:
+            cursor= self.connection.cursor()
+            query= """UPDATE "public"."Bark_Client" SET "Date_Received"= %s, "Phone"= %s, "Email"= %s, "Responded_Professional_Number"= %s, 
+            "Urgent"= %s,"Credits"= %s, "Details"= %s, "Budget"= %s, "Attachments"= %s, "Map"= %s, "Remote"= %s WHERE "Name"= %s AND "State"= %s
+            AND "Job_Type"= %s;"""
+            values= date, phone, email, responses, urgent, credits, details, budget, attachment, mapImage, remote, name, state,job_type
+            cursor.execute(query, vars= values)
+            self.connection.commit()
+            cursor.close()
+        except(Exception, psycopg2.Error) as error:
+            print(error)
+            quit()
+
     def insertQuery(self, name, date, job_type,
                     state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage, remote):
         try:
             cursor = self.connection.cursor()
-            # query = """INSERT INTO "public"."Bark_Client" ("Name", "Date_Received", "Job_Type", "State", "Phone", "Email", "Responded_Professional_Number", "Urgent", "Credits", "Details", "Budget", "Attachments", "Map", "Remote") VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT ("Name","Job_Type","State") DO UPDATE SET "Responded_Professional_Number"=EXCLUDED."Responded_Professional_Number";"""
+            # query = """INSERT INTO "public"."Bark_Client" ("Name", "Date_Received", "Job_Type", "State", 
+            # "Phone", "Email", "Responded_Professional_Number", "Urgent", "Credits", "Details", "Budget", "Attachments", "Map", "Remote") VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT ("Name","Job_Type","State") DO UPDATE SET "Responded_Professional_Number"=EXCLUDED."Responded_Professional_Number";"""
             query = """INSERT INTO "public"."Bark_Client" ("Name", "Date_Received", "Job_Type", "State", "Phone", "Email", "Responded_Professional_Number", "Urgent", "Credits", "Details", "Budget", "Attachments", "Map", "Remote") VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"""
             vars = name, date, job_type, state, phone, email, responses, urgent, credits, details, budget, attachment, mapImage, remote
             cursor.execute(query, vars=vars)
