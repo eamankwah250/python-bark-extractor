@@ -134,7 +134,7 @@ def mainFn():
         remote = check_remote_option(
             browser, '//div[@class="project-name-location project-name-location-notes d-none d-md-block hidden"]')
         credits = browser.find_element(
-            By.XPATH, '//span[@class="num-credits-resp pl-2 text-grey-400"]').text
+            By.XPATH, '//span[@class="tw-text-dark-blue-500"]').text
         details = browser.find_element(
             By.XPATH, '//*[@id="dashboard-project-details"]/div[3]/div[2]').text
         detail = details.splitlines()
@@ -148,7 +148,7 @@ def mainFn():
         attachment = check_attachments(
             browser, '//a[@title="Click to see this image in a new window"]')
         mapImage = browser.find_element(
-            By.XPATH, '//*[@id="dashboard-project-details"]/div[3]/div[2]/div[2]/div[2]/img').get_attribute('src')
+            By.XPATH, '//*[@id="dashboard-project-details"]/div[3]/div[2]/div[3]/div[2]/img').get_attribute('src')
         
         count= db.countQuery(first_name, state, job_type)
         #print(count)
