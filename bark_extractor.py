@@ -167,8 +167,8 @@ def mainFn():
 
 # Database connection
 if __name__ == '__main__':
-    db = Database(db="epifinde_EpiBark", user="epifinde_epibark", password="Thanku2Rob@bark",
-                  port="5432", host="50.87.21.232")
+    db = Database(db="epibark", user="postgres", password="ThankU2Rob@bark",
+                  port="5432", host="34.42.148.111")
     db.connect()
     mainFn()
     db.close()
